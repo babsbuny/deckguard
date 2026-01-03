@@ -338,6 +338,42 @@ export default function AnalyzePage() {
             </div>
           )}
 
+          {/* 예상 투자자 질문 */}
+          {result.likely_questions && result.likely_questions.length > 0 && (
+            <div className="bg-[#121212] border border-[#333333] rounded-xl p-6 mb-6">
+              <h3 className="flex items-center gap-2 text-lg font-semibold text-[#E5E5E5] mb-4">
+                <span className="text-[#2563EB]">?</span>
+                {language === 'en' ? 'Likely Investor Questions' : '예상 투자자 질문'}
+              </h3>
+              <div className="space-y-4">
+                {result.likely_questions.map((q: any, idx: number) => (
+                  <div key={idx} className="p-4 rounded-lg bg-[#1a1a1a]">
+                    <p className="font-medium text-[#E5E5E5] mb-2">"{q.question}"</p>
+                    <p className="text-sm text-[#A3A3A3]">{q.context}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* 방어 프롬프트 */}
+          {result.defense_prompts && result.defense_prompts.length > 0 && (
+            <div className="bg-[#121212] border border-[#333333] rounded-xl p-6 mb-6">
+              <h3 className="flex items-center gap-2 text-lg font-semibold text-[#E5E5E5] mb-4">
+                <span className="text-[#00FF94]">◇</span>
+                {language === 'en' ? 'Defense Prompts' : '방어 프롬프트'}
+              </h3>
+              <div className="space-y-4">
+                {result.defense_prompts.map((prompt: any, idx: number) => (
+                  <div key={idx} className="p-4 rounded-lg bg-[#1a1a1a]">
+                    <p className="text-[#A3A3A3] mb-2">○ {prompt.question}</p>
+                    <p className="text-[#00FF94] pl-4">{prompt.suggested_response}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* 다시 분석 버튼 */}
           <button
             onClick={() => { setFile(null); setResult(null); }}
