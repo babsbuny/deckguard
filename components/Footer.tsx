@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Shield, Heart } from 'lucide-react';
+import { Shield } from 'lucide-react';
 import { Language } from '@/types';
 
 export default function Footer() {
@@ -40,30 +40,30 @@ export default function Footer() {
 
           {/* Links */}
           <div className="flex items-center gap-6 text-sm text-text-secondary">
-            <a href="#" className="hover:text-text-primary transition-colors">
+            <a href="/terms" className="hover:text-text-primary transition-colors">
               {language === 'en' ? 'Terms' : '이용약관'}
             </a>
-            <a href="#" className="hover:text-text-primary transition-colors">
+            <a href="/privacy" className="hover:text-text-primary transition-colors">
               {language === 'en' ? 'Privacy' : '개인정보처리방침'}
             </a>
-            <a href="mailto:support@lucetelab.com" className="hover:text-text-primary transition-colors">
+            <a href="mailto:hello@deckguard.ai" className="hover:text-text-primary transition-colors">
               {language === 'en' ? 'Contact' : '문의하기'}
             </a>
           </div>
         </div>
 
-        {/* Disclaimer - MUST be visible */}
+        {/* Disclaimer */}
         <div className="pt-6 border-t border-border-color">
           <p className="text-center text-sm text-text-secondary">
             ⚠️ {disclaimer[language]}
           </p>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-4 text-center text-xs text-text-secondary">
-          <p className="flex items-center justify-center gap-1">
-            Made with <Heart className="w-3 h-3 text-no-go" /> by Lucete Lab © {new Date().getFullYear()}
-          </p>
+        {/* Copyright & Business Info */}
+        <div className="mt-4 text-center text-xs text-text-secondary space-y-1">
+          <p>Made by Lucete AI Lab © {new Date().getFullYear()}</p>
+          <p>Lucete AI Lab | {language === 'en' ? 'Business Registration No.' : '사업자등록번호'}: 143-26-01816</p>
+          <p>hello@deckguard.ai</p>
         </div>
       </div>
     </footer>
