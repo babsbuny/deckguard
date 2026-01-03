@@ -84,35 +84,10 @@ export default function AnalyzePage() {
     };
   }, []);
 
-  // 세션 부트스트랩 (보안 필수)
+  // 레몬스퀴지용 - 결제 완료 후 바로 접근 허용
   useEffect(() => {
-    if (!sessionId) {
-      router.push('/');
-      return;
-    }
-
-    async function bootstrap() {
-      try {
-        const response = await fetch('/api/session/bootstrap', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ sessionId }),
-        });
-
-        if (!response.ok) {
-          const data = await response.json();
-          throw new Error(data.error || 'Session validation failed');
-        }
-
-        setIsBootstrapped(true);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to validate session');
-        setTimeout(() => router.push('/'), 3000);
-      }
-    }
-
-    bootstrap();
-  }, [sessionId, router]);
+    setIsBootstrapped(true);
+  }, []);
 
   // 터미널 애니메이션
   useEffect(() => {
