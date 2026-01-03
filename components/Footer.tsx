@@ -35,7 +35,7 @@ export default function Footer() {
           <div className="flex items-center gap-2">
             <Shield className="w-5 h-5 text-brand-blue" />
             <span className="font-semibold">DeckGuard</span>
-            <span className="text-text-secondary text-sm">by Lucete Lab</span>
+            <span className="text-text-secondary text-sm">by Lucete AI Lab</span>
           </div>
 
           {/* Links */}
