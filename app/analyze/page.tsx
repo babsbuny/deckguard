@@ -141,7 +141,7 @@ export default function AnalyzePage() {
 
   // 분석 실행
   const handleAnalyze = async () => {
-    if (!file || !sessionId) return;
+    if (!file) return;
 
     setIsAnalyzing(true);
     setTerminalStep(0);
@@ -150,7 +150,6 @@ export default function AnalyzePage() {
     try {
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('sessionId', sessionId);
       formData.append('stage', stage);
       formData.append('language', language);
 
