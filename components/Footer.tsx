@@ -63,7 +63,6 @@ export default function Footer() {
         <div className="mt-4 text-center text-xs text-text-secondary space-y-1">
           <p>Made by Lucete AI Lab © {new Date().getFullYear()}</p>
           <p>Lucete AI Lab | {language === 'en' ? 'Business Registration No.' : '사업자등록번호'}: 143-26-01816</p>
-          <p>hello@deckguard.ai</p>
         </div>
       </div>
     </footer>
