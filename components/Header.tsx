@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Shield, Globe, DollarSign } from 'lucide-react';
+import { Shield, Globe, DollarSign, Key } from 'lucide-react';
 import { Language, Currency } from '@/types';
 
 export default function Header() {
@@ -40,8 +40,19 @@ export default function Header() {
           <span className="font-semibold text-lg">DeckGuard</span>
         </Link>
 
-        {/* Toggles */}
+        {/* Right Side */}
         <div className="flex items-center gap-4">
+          {/* Activate Link - Monthly 회원용 */}
+          <Link 
+            href="/activate"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-text-secondary hover:text-brand-blue transition-colors"
+          >
+            <Key className="w-4 h-4" />
+            <span className="hidden sm:inline">
+              {language === 'en' ? 'Monthly Pass' : '정기권 인증'}
+            </span>
+          </Link>
+
           {/* Language Toggle */}
           <div className="flex items-center gap-1 bg-bg-card border border-border-color rounded-lg p-1">
             <Globe className="w-4 h-4 text-text-secondary ml-2" />
