@@ -41,7 +41,7 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-xl font-semibold text-[#E5E5E5] mt-8 mb-4">1. Acceptance of Terms</h2>
-                <p>By accessing and using DeckGuard ("Service"), operated by Lucete AI Lab, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Service.</p>
+                <p>By accessing and using DeckGuard ("Service"), a product of Lucete AI Lab (Business Registration No. 143-26-01816), you agree to be bound by these Terms of Service. DeckGuard is the trading name under which Lucete AI Lab operates this service. If you do not agree to these terms, please do not use the Service.</p>
               </section>
 
               <section>
@@ -61,7 +61,12 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-xl font-semibold text-[#E5E5E5] mt-8 mb-4">4. Payment and Refunds</h2>
-                <p>All payments are processed securely through our payment provider. As this is a digital service, <strong>no refunds are available once analysis has begun</strong>. Please review your documents before initiating analysis.</p>
+                <p>All payments are processed securely through our payment provider. As this is a digital service that delivers results immediately upon use:</p>
+                <ul className="list-disc pl-6 space-y-2 mt-2">
+                  <li><strong>No refunds are available once analysis has begun.</strong></li>
+                  <li>Refund requests must be made within 24 hours of purchase and before initiating any analysis.</li>
+                  <li>If you experience technical issues preventing service delivery, please contact hello@deckguard.ai within 7 days for assistance.</li>
+                </ul>
               </section>
 
               <section>
@@ -95,7 +100,7 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-xl font-semibold text-[#E5E5E5] mt-8 mb-4">제1조 (목적)</h2>
-                <p>본 약관은 Lucete AI Lab(이하 "회사")이 운영하는 DeckGuard 서비스(이하 "서비스")의 이용조건 및 절차, 회사와 이용자의 권리, 의무, 책임사항을 규정함을 목적으로 합니다.</p>
+                <p>본 약관은 Lucete AI Lab(사업자등록번호: 143-26-01816, 이하 "회사")이 DeckGuard라는 서비스명으로 운영하는 서비스(이하 "서비스")의 이용조건 및 절차, 회사와 이용자의 권리, 의무, 책임사항을 규정함을 목적으로 합니다.</p>
               </section>
 
               <section>
@@ -115,7 +120,12 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-xl font-semibold text-[#E5E5E5] mt-8 mb-4">제4조 (결제 및 환불)</h2>
-                <p>모든 결제는 보안 결제 시스템을 통해 처리됩니다. 본 서비스는 디지털 서비스이므로, <strong>분석이 시작된 후에는 환불이 불가능합니다</strong>. 분석을 시작하기 전에 문서를 확인해 주시기 바랍니다.</p>
+                <p>모든 결제는 보안 결제 시스템을 통해 처리됩니다. 본 서비스는 즉시 결과를 제공하는 디지털 서비스이므로:</p>
+                <ul className="list-disc pl-6 space-y-2 mt-2">
+                  <li><strong>분석이 시작된 후에는 환불이 불가능합니다.</strong></li>
+                  <li>환불 요청은 구매 후 24시간 이내, 분석 시작 전에만 가능합니다.</li>
+                  <li>기술적 문제로 서비스 제공이 불가한 경우, 7일 이내에 hello@deckguard.ai로 문의해 주시기 바랍니다.</li>
+                </ul>
               </section>
 
               <section>
