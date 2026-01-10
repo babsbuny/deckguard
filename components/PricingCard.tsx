@@ -4,12 +4,24 @@ import { useState } from 'react';
 import { Check, Zap, Crown } from 'lucide-react';
 import { ProductType, Currency, Language } from '@/types';
 
+declare global {
+  interface Window {
+    Paddle: any;
+  }
+}
+
 interface PricingCardProps {
   type: ProductType;
   currency: Currency;
   language: Language;
   featured?: boolean;
 }
+
+// Paddle Price IDs
+const PRICE_IDS = {
+  single: 'pri_01kekqkr9rnaz0ezmf8evfjnvv',
+  monthly: 'pri_01kekqh7mv168cag98y802d6be',
+};
 
 export default function PricingCard({ type, currency, language, featured }: PricingCardProps) {
   const [loading, setLoading] = useState(false);
@@ -19,7 +31,6 @@ export default function PricingCard({ type, currency, language, featured }: Pric
       en: {
         title: 'Single Pass',
         price: currency === 'USD' ? '$29' : '₩33,000',
-        priceId: 'price_1Sl8O1QUiSBQkLZMdLPJ1gxt', 
         period: 'One-time',
         sub: 'Urgent risk check. Cheaper than a coffee chat.',
         features: [
@@ -31,7 +42,6 @@ export default function PricingCard({ type, currency, language, featured }: Pric
       kr: {
         title: '1회 진단',
         price: currency === 'USD' ? '$29' : '₩33,000',
-        priceId: 'price_1Sl8O2QUiSBQkLZMo79R72aW',
         period: '1회',
         sub: 'VC 커피챗 1회 비용보다 저렴하게, 이탈 요인을 사전에 점검하세요.',
         features: [
@@ -45,7 +55,6 @@ export default function PricingCard({ type, currency, language, featured }: Pric
       en: {
         title: 'Monthly Pass',
         price: currency === 'USD' ? '$99' : '₩99,000',
-        priceId: 'price_1Sl8O2QUiSBQkLZMRwVxCEhl',
         period: '30 days',
         sub: 'Unlimited checks until your funding round closes.',
         badge: 'Best Value',
@@ -59,7 +68,6 @@ export default function PricingCard({ type, currency, language, featured }: Pric
       kr: {
         title: '월간 패스',
         price: currency === 'USD' ? '$99' : '₩99,000',
-        priceId: 'price_1Sl8O2QUiSBQkLZM36wF26N0',
         period: '30일',
         sub: '투자 라운드 종료까지 무제한 진단 & 수정.',
         badge: '추천',
@@ -75,35 +83,25 @@ export default function PricingCard({ type, currency, language, featured }: Pric
 
   const t = content[type][language];
 
-  const handleCheckout = async () => {
+  const handleCheckout = () => {
     setLoading(true);
+    
     try {
-      // @ts-ignore (타입 에러 무시)
-      const targetPriceId = t.priceId;
-
-      console.log('Sending Checkout Request:', { type, currency, priceId: targetPriceId }); // 확인용 로그
-
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-            productType: type, 
-            currency,
-            priceId: targetPriceId 
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.url) {
-        window.location.href = data.url;
+      if (typeof window !== 'undefined' && window.Paddle) {
+        window.Paddle.Checkout.open({
+          items: [
+            {
+              priceId: PRICE_IDS[type],
+              quantity: 1,
+            },
+          ],
+        });
       } else {
-        console.error('Checkout Session Error:', data);
-        alert('결제 세션을 만들지 못했습니다. (Stripe 설정 확인 필요)');
+        alert('Payment system loading. Please try again.');
       }
     } catch (error) {
       console.error('Checkout error:', error);
-      alert('결제 시작 중 오류가 발생했습니다.');
+      alert('Failed to start checkout');
     } finally {
       setLoading(false);
     }
@@ -155,7 +153,7 @@ export default function PricingCard({ type, currency, language, featured }: Pric
           featured
             ? 'bg-brand-blue text-white hover:brightness-110'
             : 'bg-bg-card border border-border-color hover:border-brand-blue'
-        }`}
+        } ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
         {loading ? (
           <span className="animate-spin w-5 h-5 border-2 border-current border-t-transparent rounded-full" />
