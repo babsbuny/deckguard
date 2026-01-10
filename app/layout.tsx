@@ -3,6 +3,7 @@ import { IBM_Plex_Sans, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PaddleLoader from '@/components/PaddleLoader';
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],
@@ -35,6 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${ibmPlexSans.variable} ${jetbrainsMono.variable}`}>
       <body className="bg-bg-main text-text-primary font-sans min-h-screen flex flex-col">
+        <PaddleLoader />
         <Header />
         <main className="flex-1">
           {children}
