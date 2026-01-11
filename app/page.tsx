@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react';
 import { Shield, Zap, Target, CheckCircle } from 'lucide-react';
 import { Language } from '@/types';
 
-// Paddle Price IDs
+// Paddle Price IDs (LIVE)
 const PRICE_IDS = {
-  single: 'pri_01kekqkr9rnaz0ezmf8evfjnvv',
-  monthly: 'pri_01kekqh7mv168cag98y802d6be',
+  single: 'pri_01kep9trd8hahkmxfsjm2t7cqj',
+  monthly: 'pri_01kep9w7r2v5bfdmty2tvvdtdh',
 };
 
 declare global {
