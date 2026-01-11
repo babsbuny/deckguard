@@ -17,7 +17,6 @@ export default function PaddleLoader() {
           token: 'live_5ed6e541f0267c37a34442d45cf',
           eventCallback: function(data: any) {
             if (data.name === 'checkout.completed') {
-              // 결제 완료 시 analyze 페이지로 이동
               window.location.href = '/analyze?success=true';
             }
           }
