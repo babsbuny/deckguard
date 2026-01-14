@@ -18,8 +18,8 @@ interface PricingCardProps {
 
 // Paddle Price IDs (LIVE)
 const PRICE_IDS = {
-  single: 'pri_01kep9trd8hahkmxfsjm2t7cqj',
-  monthly: 'pri_01kep9w7r2v5bfdmty2tvvdtdh',
+  single: 'pri_01kekqkr9rnaz0ezmf8evfjnvv',
+  monthly: 'pri_01kekqh7mv168cag98y802d6be',
 };
 
 export default function PricingCard({ type, language, featured }: PricingCardProps) {
