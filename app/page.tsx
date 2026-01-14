@@ -121,7 +121,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="pt-32 pb-16 px-4">
+      <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
             {t.headline}
