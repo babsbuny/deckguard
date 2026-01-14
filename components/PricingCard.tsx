@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Check, Zap, Crown } from 'lucide-react';
-import { ProductType, Currency, Language } from '@/types';
+import { ProductType, Language } from '@/types';
 
 declare global {
   interface Window {
@@ -12,7 +12,6 @@ declare global {
 
 interface PricingCardProps {
   type: ProductType;
-  currency: Currency;
   language: Language;
   featured?: boolean;
 }
@@ -23,14 +22,14 @@ const PRICE_IDS = {
   monthly: 'pri_01kep9w7r2v5bfdmty2tvvdtdh',
 };
 
-export default function PricingCard({ type, currency, language, featured }: PricingCardProps) {
+export default function PricingCard({ type, language, featured }: PricingCardProps) {
   const [loading, setLoading] = useState(false);
 
   const content = {
     single: {
       en: {
         title: 'Single Pass',
-        price: currency === 'USD' ? '$29' : '₩33,000',
+        price: '$29',
         period: 'One-time',
         sub: 'Urgent risk check. Cheaper than a coffee chat.',
         features: [
@@ -38,10 +37,11 @@ export default function PricingCard({ type, currency, language, featured }: Pric
           'Full risk report',
           'Defense prompts included',
         ],
+        cta: 'Get Started',
       },
       kr: {
         title: '1회 진단',
-        price: currency === 'USD' ? '$29' : '₩33,000',
+        price: '$29',
         period: '1회',
         sub: 'VC 커피챗 1회 비용보다 저렴하게, 이탈 요인을 사전에 점검하세요.',
         features: [
@@ -49,12 +49,13 @@ export default function PricingCard({ type, currency, language, featured }: Pric
           '전체 리스크 리포트',
           '방어 프롬프트 포함',
         ],
+        cta: '시작하기',
       },
     },
     monthly: {
       en: {
         title: 'Monthly Pass',
-        price: currency === 'USD' ? '$99' : '₩99,000',
+        price: '$99',
         period: '30 days',
         sub: 'Unlimited checks until your funding round closes.',
         badge: 'Best Value',
@@ -64,10 +65,11 @@ export default function PricingCard({ type, currency, language, featured }: Pric
           'Priority support',
           'Team sharing (coming soon)',
         ],
+        cta: 'Get Started',
       },
       kr: {
         title: '월간 패스',
-        price: currency === 'USD' ? '$99' : '₩99,000',
+        price: '$99',
         period: '30일',
         sub: '투자 라운드 종료까지 무제한 진단 & 수정.',
         badge: '추천',
@@ -77,6 +79,7 @@ export default function PricingCard({ type, currency, language, featured }: Pric
           '우선 지원',
           '팀 공유 (곧 출시)',
         ],
+        cta: '시작하기',
       },
     },
   };
@@ -160,7 +163,7 @@ export default function PricingCard({ type, currency, language, featured }: Pric
         ) : (
           <>
             <Zap className="w-4 h-4" />
-            {language === 'en' ? 'Get Started' : '시작하기'}
+            {t.cta}
           </>
         )}
       </button>
