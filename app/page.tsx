@@ -1,20 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Shield, Zap, Target, CheckCircle, Crown } from 'lucide-react';
+import { Shield, Zap, Target, CheckCircle } from 'lucide-react';
+import PricingCard from '@/components/PricingCard';
 import { Language } from '@/types';
-
-// Paddle Price IDs (LIVE)
-const PRICE_IDS = {
-  single: 'pri_01kep9trd8hahkmxfsjm2t7cqj',
-  monthly: 'pri_01kep9w7r2v5bfdmty2tvvdtdh',
-};
-
-declare global {
-  interface Window {
-    Paddle: any;
-  }
-}
 
 export default function Home() {
   const [language, setLanguage] = useState<Language>('en');
@@ -50,24 +39,8 @@ export default function Home() {
         { num: '03', title: 'Improve', desc: 'Fix issues before sending' },
       ],
       pricing: 'Pricing',
-      single: {
-        title: 'Single Pass',
-        price: '$29',
-        period: 'one-time',
-        desc: 'Urgent risk check. Cheaper than a coffee chat.',
-        features: ['1 Deck Analysis', 'Full Risk Report', 'Defense Prompts'],
-        cta: 'Buy Single Pass',
-      },
-      monthly: {
-        title: 'Pro Monthly',
-        price: '$99',
-        period: 'month',
-        desc: 'Unlimited checks until your funding round closes.',
-        badge: 'Best Value',
-        features: ['Unlimited Analyses', '30-Day Access', 'Priority Support', 'Team Sharing (Soon)'],
-        cta: 'Get Pro Monthly',
-      },
-      refundNotice: 'Digital service. No refunds once analysis begins.',
+      pricingSub: 'Choose the plan that fits your funding timeline',
+      trust: 'Trusted by 100+ founders worldwide',
     },
     kr: {
       headline: '투자자 이탈 요인을 사전에 제거하세요.',
@@ -81,85 +54,100 @@ export default function Home() {
       howItWorks: '이용 방법',
       steps: [
         { num: '01', title: '업로드', desc: '피치덱 PDF 업로드' },
-        { num: '02', title: '분석', desc: 'AI가 이탈 요인 스캔' },
-        { num: '03', title: '개선', desc: '발송 전 문제 수정' },
+        { num: '02', title: '분석', desc: 'AI가 이탈 요인 분석' },
+        { num: '03', title: '개선', desc: '발송 전 문제 해결' },
       ],
       pricing: '가격',
-      single: {
-        title: 'Single Pass',
-        price: '$29',
-        period: '1회',
-        desc: 'VC 커피챗 1회 비용보다 저렴하게 이탈 요인을 점검하세요.',
-        features: ['피치덱 1회 분석', '전체 리스크 리포트', '방어 프롬프트 포함'],
-        cta: '1회 진단 구매',
-      },
-      monthly: {
-        title: 'Pro Monthly',
-        price: '$99',
-        period: '월',
-        desc: '투자 라운드 종료까지 무제한 진단 & 수정.',
-        badge: '추천',
-        features: ['무제한 분석', '30일 이용권', '우선 지원', '팀 공유 (곧 출시)'],
-        cta: '월간 패스 구매',
-      },
-      refundNotice: '디지털 서비스이므로 분석 시작 후에는 환불이 불가합니다.',
+      pricingSub: '투자 일정에 맞는 플랜을 선택하세요',
+      trust: '전세계 100+ 창업자가 신뢰합니다',
     },
   };
 
   const t = content[language];
 
-  const handleCheckout = (type: 'single' | 'monthly') => {
-    if (typeof window !== 'undefined' && window.Paddle) {
-      window.Paddle.Checkout.open({
-        items: [{ priceId: PRICE_IDS[type], quantity: 1 }],
-      });
-    } else {
-      alert('Payment system loading. Please try again.');
-    }
-  };
-
   return (
     <div className="min-h-screen">
-      {/* Hero */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+      {/* Hero Section */}
+      <section className="relative py-20 px-4 overflow-hidden">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-blue/10 to-transparent" />
+        
+        <div className="max-w-6xl mx-auto text-center relative z-10">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-card border border-border-color mb-8">
+            <span className="w-2 h-2 rounded-full bg-go animate-pulse" />
+            <span className="text-sm text-text-secondary">by Lucete AI Lab</span>
+          </div>
+
+          {/* Headline */}
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             {t.headline}
           </h1>
-          <p className="text-xl text-text-secondary mb-10 max-w-2xl mx-auto">
+
+          {/* Subheadline */}
+          <p className="text-xl text-text-secondary max-w-2xl mx-auto mb-10">
             {t.subheadline}
           </p>
-          <button
-            onClick={() => handleCheckout('single')}
+
+          {/* CTA Button */}
+          <a
+            href="#pricing"
             className="inline-flex items-center gap-2 px-8 py-4 bg-brand-blue text-white font-semibold rounded-lg hover:brightness-110 transition-all"
           >
-            <Zap className="w-5 h-5" />
             {t.cta}
-          </button>
+            <Zap className="w-5 h-5" />
+          </a>
+
+          {/* Terminal Preview */}
+          <div className="mt-16 max-w-2xl mx-auto">
+            <div className="bg-bg-card border border-border-color rounded-lg overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-border-color">
+                <div className="w-3 h-3 rounded-full bg-no-go" />
+                <div className="w-3 h-3 rounded-full bg-hold" />
+                <div className="w-3 h-3 rounded-full bg-go" />
+                <span className="ml-2 text-sm text-text-secondary font-mono">DeckGuard v1.0</span>
+              </div>
+              <div className="p-6 font-mono text-sm">
+                <div className="text-go">$ analyzing pitch_deck.pdf...</div>
+                <div className="text-text-secondary mt-2">→ Extracting content...</div>
+                <div className="text-text-secondary">→ Checking business model clarity...</div>
+                <div className="text-text-secondary">→ Validating stage alignment...</div>
+                <div className="text-hold mt-2">⚠ Found 2 friction points</div>
+                <div className="text-go mt-2">✓ Analysis complete</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-16 px-4 bg-bg-surface">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
-          {t.features.map((feature, idx) => (
-            <div key={idx} className="text-center p-6">
-              <feature.icon className="w-12 h-12 text-brand-blue mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-              <p className="text-text-secondary">{feature.desc}</p>
-            </div>
-          ))}
+      {/* Features Section */}
+      <section className="py-20 px-4 bg-bg-card">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8">
+            {t.features.map((feature, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-lg bg-bg-surface border border-border-color card-hover"
+              >
+                <feature.icon className="w-10 h-10 text-brand-blue mb-4" />
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-text-secondary">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="py-16 px-4">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">{t.howItWorks}</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {t.steps.map((step, idx) => (
-              <div key={idx} className="relative">
-                <div className="text-6xl font-bold text-brand-blue/20 mb-2">{step.num}</div>
+              <div key={idx} className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-blue/20 text-brand-blue font-mono font-bold text-xl mb-4">
+                  {step.num}
+                </div>
                 <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
                 <p className="text-text-secondary">{step.desc}</p>
               </div>
@@ -168,83 +156,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="py-16 px-4 bg-bg-surface">
+      {/* Pricing Section */}
+      <section id="pricing" className="py-20 px-4 bg-bg-card">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">{t.pricing}</h2>
-          
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {/* Single Pass */}
-            <div className="bg-bg-card rounded-2xl border border-border-color p-8 hover:-translate-y-1 transition-all">
-              <div className="text-center mb-6">
-                <h3 className="text-lg font-semibold text-brand-blue uppercase tracking-wide">
-                  {t.single.title}
-                </h3>
-                <div className="mt-4 flex justify-center items-baseline">
-                  <span className="text-5xl font-extrabold">{t.single.price}</span>
-                  <span className="ml-2 text-xl text-text-secondary">/ {t.single.period}</span>
-                </div>
-                <p className="mt-4 text-text-secondary">{t.single.desc}</p>
-              </div>
-              
-              <ul className="space-y-3 mb-8">
-                {t.single.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-go flex-shrink-0" />
-                    <span className="text-text-secondary">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <button
-                onClick={() => handleCheckout('single')}
-                className="w-full py-4 bg-bg-surface border border-border-color rounded-xl font-semibold hover:border-brand-blue transition-all"
-              >
-                {t.single.cta}
-              </button>
-            </div>
+          <h2 className="text-3xl font-bold text-center mb-4">{t.pricing}</h2>
+          <p className="text-text-secondary text-center mb-12">
+            {t.pricingSub}
+          </p>
 
-            {/* Pro Monthly */}
-            <div className="bg-bg-card rounded-2xl border-2 border-brand-blue p-8 relative hover:-translate-y-1 transition-all">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                <span className="inline-flex items-center gap-1 px-3 py-1 bg-brand-blue text-white text-xs font-bold rounded-full uppercase">
-                  <Crown className="w-3 h-3" />
-                  {t.monthly.badge}
-                </span>
-              </div>
-              
-              <div className="text-center mb-6">
-                <h3 className="text-lg font-semibold text-brand-blue uppercase tracking-wide">
-                  {t.monthly.title}
-                </h3>
-                <div className="mt-4 flex justify-center items-baseline">
-                  <span className="text-5xl font-extrabold">{t.monthly.price}</span>
-                  <span className="ml-2 text-xl text-text-secondary">/ {t.monthly.period}</span>
-                </div>
-                <p className="mt-4 text-text-secondary">{t.monthly.desc}</p>
-              </div>
-              
-              <ul className="space-y-3 mb-8">
-                {t.monthly.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-go flex-shrink-0" />
-                    <span className="text-text-secondary">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <button
-                onClick={() => handleCheckout('monthly')}
-                className="w-full py-4 bg-brand-blue text-white rounded-xl font-semibold hover:brightness-110 transition-all"
-              >
-                {t.monthly.cta}
-              </button>
-            </div>
+          {/* Pricing Cards */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <PricingCard
+              type="single"
+              language={language}
+            />
+            <PricingCard
+              type="monthly"
+              language={language}
+              featured
+            />
           </div>
 
-          <p className="mt-8 text-center text-sm text-text-secondary">
-            {t.refundNotice}
+          {/* No Refund Notice */}
+          <p className="text-center text-text-secondary text-sm mt-8">
+            {language === 'en'
+              ? 'Digital service. No refunds once analysis begins.'
+              : '디지털 서비스이므로 분석 시작 후에는 환불이 불가합니다.'}
           </p>
+        </div>
+      </section>
+
+      {/* Trust Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 text-text-secondary">
+            <CheckCircle className="w-5 h-5 text-go" />
+            <span>{t.trust}</span>
+          </div>
         </div>
       </section>
     </div>
