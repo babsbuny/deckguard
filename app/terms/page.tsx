@@ -3,26 +3,28 @@
 import { useState } from 'react';
 
 export default function TermsPage() {
-  const [language, setLanguage] = useState<'en' | 'ko'>('en');
+  const [language, setLanguage] = useState('en');
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'ko' : 'en');
+  };
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-[#A3A3A3]">
-      {/* Header */}
       <header className="border-b border-[#1F1F1F] px-6 py-4">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <a href="/" className="text-[#E5E5E5] font-semibold text-lg">
             DeckGuard
           </a>
           <button
-            onClick={() => setLanguage(language === 'en' ? 'ko' : 'en')}
-            className="text-sm text-[#A3A3A3] hover:text-[#E5E5E5] transition-colors"
+            onClick={toggleLanguage}
+            className="text-sm text-[#A3A3A3] hover:text-[#E5E5E5] transition-colors px-3 py-1 border border-[#333] rounded"
           >
             {language === 'en' ? '한국어' : 'English'}
           </button>
         </div>
       </header>
 
-      {/* Content */}
       <main className="max-w-4xl mx-auto px-6 py-12">
         {language === 'en' ? (
           <div className="space-y-6">
@@ -32,7 +34,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-xl font-semibold text-[#E5E5E5] mt-8 mb-4">1. Acceptance of Terms</h2>
-              <p>By accessing and using DeckGuard ("Service"), a product of Lucete AI Lab (Business Registration No. 143-26-01816), you agree to be bound by these Terms of Service. Lucete AI Lab is the legal entity operating this service under the product name "DeckGuard". If you do not agree to these terms, please do not use the Service.</p>
+              <p>By accessing and using DeckGuard (&quot;Service&quot;), a product of Lucete AI Lab (Business Registration No. 143-26-01816), you agree to be bound by these Terms of Service. Lucete AI Lab is the legal entity operating this service under the product name &quot;DeckGuard&quot;. If you do not agree to these terms, please do not use the Service.</p>
             </section>
 
             <section>
@@ -90,7 +92,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-xl font-semibold text-[#E5E5E5] mt-8 mb-4">제1조 (목적)</h2>
-              <p>본 약관은 Lucete AI Lab(사업자등록번호: 143-26-01816, 이하 "회사")이 DeckGuard라는 서비스명으로 운영하는 서비스(이하 "서비스")의 이용조건 및 절차, 회사와 이용자의 권리, 의무, 책임사항을 규정함을 목적으로 합니다. Lucete AI Lab은 "DeckGuard"라는 제품명으로 본 서비스를 운영하는 법인입니다.</p>
+              <p>본 약관은 Lucete AI Lab(사업자등록번호: 143-26-01816, 이하 &quot;회사&quot;)이 DeckGuard라는 서비스명으로 운영하는 서비스(이하 &quot;서비스&quot;)의 이용조건 및 절차, 회사와 이용자의 권리, 의무, 책임사항을 규정함을 목적으로 합니다. Lucete AI Lab은 &quot;DeckGuard&quot;라는 제품명으로 본 서비스를 운영하는 법인입니다.</p>
             </section>
 
             <section>
@@ -143,7 +145,6 @@ export default function TermsPage() {
         )}
       </main>
 
-      {/* Footer */}
       <footer className="border-t border-[#1F1F1F] px-6 py-8 mt-12">
         <div className="max-w-4xl mx-auto text-center text-sm text-[#737373]">
           <p>© 2026 Lucete AI Lab. All rights reserved.</p>
