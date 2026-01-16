@@ -78,7 +78,7 @@ export default function TermsPage() {
               <ul className="list-none mt-2 space-y-1">
                 <li><strong>Business Name:</strong> Lucete AI Lab</li>
                 <li><strong>Product Name:</strong> DeckGuard</li>
-                <li><strong>Business Registration No.:</strong> 143-26-01816</li>
+                <li><strong>Business Registration No. (South Korea):</strong> 143-26-01816</li>
                 <li><strong>Email:</strong> hello@deckguard.ai</li>
               </ul>
             </section>
